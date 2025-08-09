@@ -120,7 +120,7 @@ C 3917.38 977.342, 3687.48 1413.21, 3907.88 1222.01" stroke="#c4a574" strokeWidt
           <span></span>
         </div>
         
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} onClick={(e) => e.target === e.currentTarget && closeMenu()}>
           <li><Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={closeMenu}>Home</Link></li>
           <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={closeMenu}>About</Link></li>
           <li><Link to="/services" className={location.pathname === '/services' ? 'active' : ''} onClick={closeMenu}>Services</Link></li>
