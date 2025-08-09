@@ -731,7 +731,12 @@ body {
     align-self: flex-start !important;
   }
   
+  footer .container > div[style*="display: flex"] > div:first-child {
+    order: 2;
+  }
+  
   footer .container > div[style*="display: flex"] > div:last-child {
+    order: 1;
     margin-left: 0 !important;
   }
   
