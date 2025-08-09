@@ -549,13 +549,14 @@ body {
   }
   
   .nav-menu a {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     color: #666 !important;
     font-family: 'NEUEMONTREAL', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
     text-shadow: none !important;
+    margin: 1rem 0;
   }
   
   .nav-container {
