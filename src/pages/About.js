@@ -99,7 +99,7 @@ const About = () => {
         <div className="container">
           <h2 style={{textAlign: 'center', marginBottom: '3rem', color: '#2c2c2c'}}>My Story</h2>
           
-          <div style={{
+          <div className="about-grid-1" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 300px',
             gap: '3rem',
@@ -138,7 +138,7 @@ const About = () => {
             </div>
           </div>
           
-          <div style={{
+          <div className="about-grid-2" style={{
             display: 'grid',
             gridTemplateColumns: '250px 1fr',
             gap: '3rem',
@@ -236,7 +236,7 @@ const About = () => {
         <div className="container">
           <h2 style={{textAlign: 'center', marginBottom: '3rem', color: '#2c2c2c'}}>My Values</h2>
           
-          <div style={{
+          <div className="about-grid-3" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 350px',
             gap: '4rem',
@@ -244,13 +244,13 @@ const About = () => {
             margin: '0 auto',
             alignItems: 'center'
           }}>
-            <div style={{
+            <div className="values-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '2rem'
             }}>
               {values.map((value, index) => (
-                <div key={index} style={{
+                <div key={index} className="value-item" style={{
                   textAlign: 'center',
                   padding: '1.5rem'
                 }}>
@@ -284,7 +284,7 @@ const About = () => {
         <div className="container">
           <h2 style={{textAlign: 'center', marginBottom: '3rem', color: '#2c2c2c'}}>Areas of Expertise</h2>
           
-          <div style={{
+          <div className="about-grid-4" style={{
             display: 'grid',
             gridTemplateColumns: '300px 1fr',
             gap: '4rem',
@@ -330,7 +330,7 @@ const About = () => {
 
       <section className="content-section">
         <div className="container">
-          <div style={{
+          <div className="about-cta" style={{
             textAlign: 'center',
             background: '#f5f2e8',
             color: '#2c2c2c',

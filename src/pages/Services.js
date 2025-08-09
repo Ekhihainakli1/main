@@ -72,7 +72,7 @@ const Services = () => {
             We provide comprehensive solutions for all your property and lifestyle needs
           </p>
 
-          <div style={{
+          <div className="services-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '1.5rem',
@@ -165,7 +165,7 @@ const Services = () => {
             border: '1px solid #333'
           }}>
             <h3 style={{fontSize: '2rem', marginBottom: '2rem', color: '#e0e0e0'}}>Why Choose Us?</h3>
-            <div style={{
+            <div className="why-choose-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '1rem',

@@ -7,6 +7,7 @@ const Home = () => {
   const [counters, setCounters] = useState({ properties: 0, years: 0, homes: 0, clients: 0 });
   const statsRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const animateCounter = (target, key) => {
     const duration = target < 50 ? 800 : 2000; // A bit slower for smaller numbers
@@ -77,6 +78,12 @@ const Home = () => {
   }, [hasAnimated]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
     const navbar = document.querySelector('.navbar');
     navbar.classList.add('transparent');
     
@@ -102,6 +109,7 @@ const Home = () => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
       navbar.classList.remove('transparent');
     };
   }, []);
@@ -146,9 +154,9 @@ const Home = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '3rem',
+            gap: windowWidth <= 480 ? '1rem' : windowWidth <= 600 ? '1.5rem' : windowWidth <= 1024 ? '2rem' : '3rem',
             textAlign: 'center'
-          }}>
+          }} className="stats-grid">
             <div>
               <h3 style={{fontSize: '2.5rem', color: '#c4a574', marginBottom: '0.5rem', fontWeight: '300'}}>{counters.properties}+</h3>
               <p style={{fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px'}}>Properties Managed</p>
@@ -191,7 +199,7 @@ const Home = () => {
               alignItems: 'center',
               maxWidth: '1000px',
               margin: '0 auto'
-            }}>
+            }} className="city-skyline-grid">
               <div style={{textAlign: 'center'}}>
                 <img 
                   src={require('../images/an-outline-drawing-of-a-city-skyline-illustration-photo-1536x1229.jpg')} 

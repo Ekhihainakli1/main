@@ -58,8 +58,9 @@ const Contact = () => {
           Message sent successfully! We'll get back to you within 24 hours.
         </div>
       )}
+      
       {/* Hero Section */}
-      <section style={{
+      <section className="contact-hero" style={{
         background: 'linear-gradient(135deg, #c4a574 0%, #a0824a 100%)',
         padding: '6rem 0 4rem',
         color: 'white',
@@ -81,9 +82,29 @@ const Contact = () => {
         </div>
       </section>
 
-      <section style={{padding: '4rem 0'}}>
+      {/* Get In Touch Text Section */}
+      <section className="get-in-touch-text" style={{padding: '1rem 0 0.5rem', display: 'none'}}>
         <div className="container">
-          <div style={{
+          <div style={{textAlign: 'center', maxWidth: '800px', margin: '0 auto'}}>
+            <h2 style={{
+              fontSize: '2.2rem',
+              fontWeight: '300',
+              color: '#2c2c2c',
+              marginBottom: '2rem'
+            }}>Get In Touch</h2>
+            
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#666',
+              lineHeight: '1.6'
+            }}>Whether you're looking for luxury holiday homes, premium interior design, or expert real estate services, I'm here to provide personalized solutions that exceed your expectations.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="main-contact-section" style={{padding: '4rem 0'}}>
+        <div className="container">
+          <div className="contact-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '4rem',
@@ -91,7 +112,7 @@ const Contact = () => {
             margin: '0 auto'
           }}>
             {/* Contact Information */}
-            <div>
+            <div className="contact-info-section">
               <h2 style={{
                 fontSize: '2.2rem',
                 fontWeight: '300',
@@ -247,7 +268,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form */}
-            <div style={{
+            <div className="contact-form-section" style={{
               background: 'white',
               padding: '3rem',
               borderRadius: '15px',
@@ -262,7 +283,7 @@ const Contact = () => {
               }}>Send a Message</h3>
               
               <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
-                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
+                <div className="form-row" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
                   <input
                     type="text"
                     name="name"
@@ -407,7 +428,7 @@ const Contact = () => {
         <div className="container">
           <h3 style={{fontSize: '1.8rem', marginBottom: '1rem', fontWeight: '300'}}>Need Immediate Assistance?</h3>
           <p style={{marginBottom: '2rem', opacity: '0.8'}}>For urgent inquiries, reach out directly</p>
-          <div style={{display: 'flex', justifyContent: 'center', gap: '2rem'}}>
+          <div className="cta-buttons" style={{display: 'flex', justifyContent: 'center', gap: '2rem'}}>
             <a href="tel:+1234567890" style={{
               display: 'inline-flex',
               alignItems: 'center',

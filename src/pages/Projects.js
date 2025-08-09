@@ -86,7 +86,7 @@ const Projects = () => {
   return (
     <div className="page" style={{background: '#faf8f3'}}>
       {/* Minimal Hero */}
-      <section style={{
+      <section className="projects-hero" style={{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${offPlanImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -128,7 +128,7 @@ const Projects = () => {
                 gap: '4rem',
                 alignItems: 'center',
                 minHeight: '500px'
-              }}>
+              }} className="project-item">
                 {/* Image Section */}
                 <div style={{
                   order: index % 2 === 0 ? 1 : 2,
@@ -337,7 +337,7 @@ const Projects = () => {
       </section>
 
       {/* Minimal CTA */}
-      <section style={{
+      <section className="investment-cta" style={{
         background: '#1a1a1a',
         color: 'white',
         padding: '6rem 0',

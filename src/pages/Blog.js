@@ -64,7 +64,7 @@ const Blog = () => {
     <div className="page">
       <section className="content-section">
         <div className="container">
-          <h2 style={{color: '#e0e0e0'}}>Blog & <span style={{color: '#00bcd4'}}>Articles</span></h2>
+          <h2 style={{color: '#e0e0e0'}}>Blog & <span style={{color: '#c4a574'}}>Articles</span></h2>
           <p style={{textAlign: 'center', fontSize: '1.1rem', color: '#a0a0a0', marginBottom: '3rem'}}>
             Sharing knowledge and insights about property, interior design, and real estate
           </p>
@@ -80,10 +80,10 @@ const Blog = () => {
             {categories.map((category, index) => (
               <button key={index} style={{
                 padding: '8px 16px',
-                border: '2px solid #00bcd4',
+                border: '2px solid #c4a574',
                 borderRadius: '25px',
-                background: index === 0 ? '#00bcd4' : 'transparent',
-                color: index === 0 ? '#121212' : '#00bcd4',
+                background: index === 0 ? '#c4a574' : 'transparent',
+                color: index === 0 ? '#121212' : '#c4a574',
                 cursor: 'pointer',
                 fontWeight: '500',
                 transition: 'all 0.3s ease'
@@ -113,8 +113,8 @@ const Blog = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,188,212,0.2)';
-                e.currentTarget.style.borderColor = '#00bcd4';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(196,165,116,0.2)';
+                e.currentTarget.style.borderColor = '#c4a574';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -126,7 +126,7 @@ const Blog = () => {
                 <div style={{
                   height: '200px',
                   background: `linear-gradient(135deg, #121212 0%, #1a1a1a 100%)`,
-                  borderBottom: '1px solid #00bcd4',
+                  borderBottom: '1px solid #c4a574',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -189,7 +189,7 @@ const Blog = () => {
                   </div>
 
                   <a href="#" style={{
-                    color: '#00bcd4',
+                    color: '#c4a574',
                     textDecoration: 'none',
                     fontWeight: '600',
                     fontSize: '0.9rem'
@@ -213,7 +213,7 @@ const Blog = () => {
             border: '1px solid #333'
           }}>
             <h3 style={{fontSize: '1.5rem', marginBottom: '1rem', color: '#e0e0e0'}}>
-              Subscribe to My <span style={{color: '#00bcd4'}}>Newsletter</span>
+              Subscribe to My <span style={{color: '#c4a574'}}>Newsletter</span>
             </h3>
             <p style={{color: '#a0a0a0', marginBottom: '2rem'}}>
               Get the latest articles and insights delivered directly to your inbox
