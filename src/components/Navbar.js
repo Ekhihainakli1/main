@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -11,6 +13,11 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+  
+  const openPopup = () => {
+    setShowPopup(true);
+    closeMenu();
   };
 
   return (
@@ -120,7 +127,7 @@ C 3917.38 977.342, 3687.48 1413.21, 3907.88 1222.01" stroke="#c4a574" strokeWidt
           <span></span>
         </div>
         
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} onClick={(e) => e.target === e.currentTarget && closeMenu()}>
           <li><Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={closeMenu}>Home</Link></li>
           <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={closeMenu}>About</Link></li>
           <li><Link to="/services" className={location.pathname === '/services' ? 'active' : ''} onClick={closeMenu}>Services</Link></li>
@@ -128,7 +135,108 @@ C 3917.38 977.342, 3687.48 1413.21, 3907.88 1222.01" stroke="#c4a574" strokeWidt
           <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''} onClick={closeMenu}>Blog</Link></li>
           <li><Link to="/social" className={location.pathname === '/social' ? 'active' : ''} onClick={closeMenu}>Social</Link></li>
           <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={closeMenu}>Contact</Link></li>
+          <li><button onClick={() => {setShowPopup(true); closeMenu();}} style={{background: '#c4a574', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '1rem'}}>Free Consultation</button></li>
         </ul>
+        
+        {/* Popup Modal */}
+        {showPopup && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100vh',
+            background: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            overflow: 'auto'
+          }} onClick={() => setShowPopup(false)}>
+            <div className="consultation-popup" style={{
+              background: 'white',
+              borderRadius: '8px',
+              maxWidth: '800px',
+              width: '90%',
+              maxHeight: '80vh',
+              overflowY: 'auto',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              overflow: 'hidden'
+            }} onClick={(e) => e.stopPropagation()}>
+              {/* Photo Section */}
+              <div style={{
+                background: '#f8f8f8',
+                minHeight: '400px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#999'
+              }}>
+                {/* Profile picture will go here */}
+              </div>
+              
+              {/* Form Section */}
+              <div style={{padding: '2rem', position: 'relative'}}>
+                <button onClick={() => setShowPopup(false)} style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '1.5rem',
+                  cursor: 'pointer'
+                }}>×</button>
+                
+                <h2 style={{margin: '0 0 1rem 0', color: '#333', fontSize: '1.5rem'}}>Book a free consultation with Sameer today.</h2>
+                
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  e.target.reset();
+                  setIsSubmitted(true);
+                  setTimeout(() => {
+                    setIsSubmitted(false);
+                    setShowPopup(false);
+                  }, 3000);
+                }}>
+                  <div style={{display: 'grid', gap: '1rem', marginBottom: '1rem'}}>
+                    <input type="text" placeholder="Name" required style={{padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px'}} />
+                    <input type="email" placeholder="Email" required style={{padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px'}} />
+                    <input type="tel" placeholder="Mobile Number" required style={{padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px'}} />
+                    <textarea placeholder="Your message..." required rows="3" style={{padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', resize: 'vertical', fontFamily: 'inherit'}} />
+                  </div>
+                  <button type="submit" style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: '#c4a574',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '1rem',
+                    fontWeight: '500'
+                  }}>
+                    {isSubmitted ? 'Thank You!' : 'Submit'}
+                  </button>
+                  
+                  {isSubmitted && (
+                    <div style={{
+                      marginTop: '1rem',
+                      padding: '0.5rem',
+                      background: 'rgb(245, 242, 232)',
+                      color: '#666',
+                      borderRadius: '4px',
+                      textAlign: 'center',
+                      fontSize: '0.9rem'
+                    }}>
+                      We'll get back to you within 24 hours.
+                    </div>
+                  )}
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

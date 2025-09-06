@@ -8,6 +8,7 @@ const Home = () => {
   const statsRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const animateCounter = (target, key) => {
     const duration = target < 50 ? 800 : 2000; // A bit slower for smaller numbers
@@ -123,7 +124,7 @@ const Home = () => {
 
   return (
     <div className="page">
-      <section className="hero">
+      <section className="hero" style={{minHeight: '120vh'}}>
         <video 
           className="hero-video" 
           autoPlay 
@@ -149,30 +150,140 @@ const Home = () => {
         </div>
       </section>
 
-      <section ref={statsRef} style={{padding: '50px 0 30px 0', background: 'white'}}>
+      <section style={{
+        padding: '0',
+        position: 'relative',
+        zIndex: 10,
+        marginTop: '-5rem',
+        marginBottom: '-3rem'
+      }}>
         <div className="container">
-          <div style={{
+          <div className="consultation-form-container" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: windowWidth <= 480 ? '1rem' : windowWidth <= 600 ? '1.5rem' : windowWidth <= 1024 ? '2rem' : '3rem',
-            textAlign: 'center'
-          }} className="stats-grid">
-            <div>
-              <h3 style={{fontSize: '2.5rem', color: '#c4a574', marginBottom: '0.5rem', fontWeight: '300'}}>{counters.properties}+</h3>
-              <p style={{fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px'}}>Properties Managed</p>
+            gridTemplateColumns: '2fr 1fr',
+            gap: '2rem',
+            alignItems: 'center',
+            background: '#f8f8f8',
+            padding: '0',
+            borderRadius: '12px',
+            boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
+            maxWidth: '1000px',
+            margin: '0 auto'
+          }}>
+            {/* Form Column */}
+            <div className="consultation-form" style={{padding: '2rem', background: 'rgb(245, 242, 232)', borderRadius: '8px'}}>
+              <h2 style={{
+                fontSize: '1.8rem',
+                fontWeight: '600',
+                color: '#333',
+                marginBottom: '1.5rem'
+              }}>Get a Free Consultation</h2>
+              
+              <form style={{display: 'grid', gap: '1rem'}} onSubmit={(e) => {
+                e.preventDefault();
+                e.target.reset();
+                setIsSubmitted(true);
+                setTimeout(() => setIsSubmitted(false), 4000);
+              }}>
+                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    required
+                    style={{
+                      padding: '0.75rem',
+                      border: '1px solid #ddd',
+                      borderRadius: '4px',
+                      fontSize: '0.9rem'
+                    }}
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    style={{
+                      padding: '0.75rem',
+                      border: '1px solid #ddd',
+                      borderRadius: '4px',
+                      fontSize: '0.9rem'
+                    }}
+                  />
+                </div>
+                
+                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
+                  <input
+                    type="tel"
+                    placeholder="Mobile Number"
+                    required
+                    style={{
+                      padding: '0.75rem',
+                      border: '1px solid #ddd',
+                      borderRadius: '4px',
+                      fontSize: '0.9rem'
+                    }}
+                  />
+                  <select
+                    style={{
+                      padding: '0.75rem',
+                      border: '1px solid #ddd',
+                      borderRadius: '4px',
+                      fontSize: '0.9rem'
+                    }}
+                  >
+                    <option value="">Select One</option>
+                    <option value="buy">Buy</option>
+                    <option value="sale">Sale</option>
+                    <option value="rent">Rent</option>
+                  </select>
+                </div>
+                
+                <button
+                  type="submit"
+                  style={{
+                    padding: '0.75rem 2rem',
+                    background: '#c4a574',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    fontSize: '0.9rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    textTransform: 'none',
+                    letterSpacing: '1px',
+                    transition: 'background 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.background = '#a0824a'}
+                  onMouseLeave={(e) => e.target.style.background = '#c4a574'}
+                >
+                  {isSubmitted ? 'Thank You!' : 'Submit Now'}
+                </button>
+                
+                {isSubmitted && (
+                  <div style={{
+                    marginTop: '0.5rem',
+                    padding: '0',
+                    background: 'rgb(245, 242, 232)',
+                    color: '#666',
+                    borderRadius: '4px',
+                    textAlign: 'center',
+                    fontSize: '0.9rem'
+                  }}>
+                    We'll get back to you within 24 hours.
+                  </div>
+                )}
+              </form>
             </div>
-            <div>
-              <h3 style={{fontSize: '2.5rem', color: '#c4a574', marginBottom: '0.5rem', fontWeight: '300'}}>{counters.years}+</h3>
-              <p style={{fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px'}}>Years Experience</p>
+            
+            {/* Description Column */}
+            <div style={{padding: '2rem'}}>
+              <p style={{
+                color: '#666',
+                fontSize: '1rem',
+                lineHeight: '1.6'
+              }}>An incredibly knowledgeable and experienced private client advisor that makes the process of buying and selling real estate, pleasant, profitable, stress-free and fun.</p>
             </div>
-            <div>
-              <h3 style={{fontSize: '2.5rem', color: '#c4a574', marginBottom: '0.5rem', fontWeight: '300'}}>{counters.homes}+</h3>
-              <p style={{fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px'}}>Homes Furnished</p>
-            </div>
-            <div>
-              <h3 style={{fontSize: '2.5rem', color: '#c4a574', marginBottom: '0.5rem', fontWeight: '300'}}>{counters.clients}+</h3>
-              <p style={{fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px'}}>Happy Clients</p>
-            </div>
+            
+
           </div>
         </div>
       </section>
@@ -275,14 +386,14 @@ const Home = () => {
               <div style={{position: 'absolute', right: '0', top: '120px', maxWidth: '45%'}}>
                 <h4 style={{fontSize: '1.4rem', fontWeight: '600', color: '#f5f5f5', marginBottom: '1rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '0.5px'}}>Property Sales</h4>
                 <p style={{color: 'rgba(255,255,255,0.9)', fontSize: '1rem', lineHeight: '1.7', textShadow: '0 1px 3px rgba(0,0,0,0.4)', fontWeight: '300'}}>
-                  We specialize in assisting clients with the purchase and sale of luxury properties across Dubai. From waterfront villas in Palm Jumeirah to high-rise apartments in Downtown Dubai, we provide end-to-end support to ensure a seamless experience.
+                  I specialize in assisting clients with the purchase and sale of luxury properties across Dubai. From waterfront villas in Palm Jumeirah to high-rise apartments in Downtown Dubai, I provide end-to-end support to ensure a seamless experience.
                 </p>
               </div>
               
               <div style={{position: 'absolute', left: '0', top: '280px', maxWidth: '45%'}}>
                 <h4 style={{fontSize: '1.4rem', fontWeight: '600', color: '#f5f5f5', marginBottom: '1rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '0.5px'}}>Lease Advisory</h4>
                 <p style={{color: 'rgba(255,255,255,0.9)', fontSize: '1rem', lineHeight: '1.7', textShadow: '0 1px 3px rgba(0,0,0,0.4)', fontWeight: '300'}}>
-                  Our Lease Advisory services provide tailored solutions for both landlords and tenants in Dubai's competitive real estate market. We offer expert advice on lease negotiations, contract terms, and market rates to ensure you get the best deal, whether you're leasing a luxury property or securing prime commercial space.
+                  My Lease Advisory services provide tailored solutions for both landlords and tenants in Dubai's competitive real estate market. I offer expert advice on lease negotiations, contract terms, and market rates to ensure you get the best deal, whether you're leasing a luxury property or securing prime commercial space.
                 </p>
               </div>
               
@@ -298,114 +409,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{padding: '5rem 0', background: 'white'}}>
-        <div className="container">
-          <div style={{
-            maxWidth: '800px', 
-            margin: '0 auto 5rem',
-            background: '#f5f2e8',
-            padding: '2rem',
-            borderRadius: '2px',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-            border: '1px solid #e8e8e8'
-          }}>
 
-            <p style={{
-              color: '#666',
-              marginBottom: '1.5rem',
-              fontSize: '0.95rem',
-              textAlign: 'left'
-            }}>A step forward to your luxury. Get in touch with short message.</p>
-            
-            <form style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '1rem'
-            }}>
-              <input
-                type="text"
-                placeholder="Name"
-                required
-                style={{
-                  padding: '14px 16px',
-                  border: '1px solid #ddd',
-                  borderRadius: '0',
-                  fontSize: '0.95rem',
-                  background: 'white',
-                  color: '#2c2c2c',
-                  fontFamily: 'inherit'
-                }}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                required
-                style={{
-                  padding: '14px 16px',
-                  border: '1px solid #ddd',
-                  borderRadius: '0',
-                  fontSize: '0.95rem',
-                  background: 'white',
-                  color: '#2c2c2c',
-                  fontFamily: 'inherit'
-                }}
-              />
-              <select
-                required
-                style={{
-                  padding: '14px 16px',
-                  border: '1px solid #ddd',
-                  borderRadius: '0',
-                  fontSize: '0.95rem',
-                  background: 'white',
-                  color: '#2c2c2c',
-                  fontFamily: 'inherit',
-                  gridColumn: '1 / -1'
-                }}
-              >
-                <option value="">Service Required</option>
-                <option value="holiday-homes">Holiday Homes</option>
-                <option value="interior-design">Interior Design</option>
-                <option value="real-estate">Real Estate</option>
-              </select>
-              <textarea
-                placeholder="Message"
-                required
-                rows="4"
-                style={{
-                  padding: '14px 16px',
-                  border: '1px solid #ddd',
-                  borderRadius: '0',
-                  fontSize: '0.95rem',
-                  resize: 'vertical',
-                  background: 'white',
-                  color: '#2c2c2c',
-                  fontFamily: 'inherit',
-                  gridColumn: '1 / -1'
-                }}
-              />
-              <button
-                type="submit"
-                style={{
-                  padding: '14px 32px',
-                  background: '#2c2c2c',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '0',
-                  fontSize: '0.95rem',
-                  fontWeight: '400',
-                  cursor: 'pointer',
-                  transition: 'background 0.3s ease',
-                  justifySelf: 'start',
-                  fontFamily: 'inherit'
-                }}
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
 
       <section className="offplan-background" style={{
         minHeight: '100vh',

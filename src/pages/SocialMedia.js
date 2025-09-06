@@ -50,8 +50,8 @@ const SocialMedia = () => {
     {
       name: "WhatsApp",
       icon: "💬",
-      handle: "+1 (234) 567-8900",
-      url: "https://wa.me/12345678900",
+      handle: "+971 50 957 1077",
+      url: "https://wa.me/971509571077",
       description: "Direct messaging for quick inquiries",
       followers: "Available 24/7",
       color: "#25D366"
@@ -84,7 +84,7 @@ const SocialMedia = () => {
     <div className="page">
       <section className="content-section">
         <div className="container">
-          <h2 style={{color: '#2c2c2c'}}>Connect With Us</h2>
+          <h2 style={{color: '#2c2c2c'}}>Connect With Me</h2>
           <p style={{textAlign: 'center', fontSize: '1.1rem', color: '#666', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem'}}>
             Stay connected across all platforms for the latest updates, property insights, and exclusive content
           </p>
@@ -101,7 +101,7 @@ const SocialMedia = () => {
               Latest Social Updates
             </h3>
             <p style={{color: '#666', marginBottom: '2rem', fontSize: '1.1rem'}}>
-              Follow us for daily property insights, design inspiration, and exclusive deals
+              Follow me for daily property insights, design inspiration, and exclusive deals
             </p>
             
             <div style={{
